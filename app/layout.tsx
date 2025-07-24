@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
-  subsets:["latin"],
+  subsets: ["latin"],
   variable: "--font-inter"
 })
 
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body suppressHydrationWarning
         className={`${inter.variable} antialiased`}
       >
-        {children}
+       {children}
       </body>
     </html>
   );
