@@ -19,6 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { motion, AnimatePresence } from 'framer-motion';
 import { signupAction } from "@/actions/signup"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 
 export function SignupForm({
@@ -29,6 +30,7 @@ export function SignupForm({
         resolver: zodResolver(signupSchema),
         mode: 'onChange'
     })
+    const router = useRouter();
 
     const [error, setError] = useState<string | null>(null)
     const [success, setSuccess] = useState<string | null>(null)
@@ -41,6 +43,7 @@ export function SignupForm({
             } else {
                 setError(null)
                 setSuccess("User created Successfully")
+                router.push('/admin/auth/signin')
             }
         } catch (error: any) {
             console.error(error.message || "Something went wrong")

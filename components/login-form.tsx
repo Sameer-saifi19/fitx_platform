@@ -12,28 +12,41 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FaGoogle } from "react-icons/fa";
+import { signIn } from "next-auth/react"
 import { FaApple } from "react-icons/fa6";
 import { useForm } from "react-hook-form"
-import { signupSchema } from "@/schemas/validations"
+import { loginSchema } from "@/schemas/validations"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from "react"
+import { useState } from "react";
+import { useRouter } from "next/navigation"
 
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const { register, handleSubmit, formState: { errors, isSubmitting, isValid } } = useForm<signupSchema>({
-    resolver: zodResolver(signupSchema),
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<loginSchema>({
+    resolver: zodResolver(loginSchema),
     mode: 'onChange'
   })
+  const router = useRouter();
 
   const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState<string | null>(null)
 
-  const onsubmit = async (data: signupSchema) => {
-    
+  const onsubmit = async (data: loginSchema) => {
+    setError('')
+    const res = await signIn("credentials",{
+      email: data.email,
+      password: data.password,
+      redirect: false
+    })
+
+    if(res?.ok){
+      router.push('/admin/dashboard')
+    }else{
+      setError("Invalid email or password")
+    }
   }
 
   return (
@@ -103,12 +116,21 @@ export function LoginForm({
                     </motion.p>}
                 </AnimatePresence>
               </div>
+              <AnimatePresence>
+                  {error &&
+                    <motion.p initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      transition={{ duration: 0.2 }}
+                      className="text-red-400 text-sm">
+                      {error}
+                    </motion.p>}
+                </AnimatePresence>
               <div className="flex flex-col gap-3">
                 <Button  type="submit" className="w-full">
-                  Continue
+                  {isSubmitting ? 'signing...' : 'sign in'}
                 </Button>
               </div>
-
             </div>
             <div className="mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}

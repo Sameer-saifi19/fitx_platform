@@ -9,6 +9,7 @@ export async function signupAction(formData: {
   email: string
   password: string
 }) {
+
   const existingUser = await prisma.admin.findUnique({
     where: { email: formData.email },
   })
