@@ -21,7 +21,7 @@ export const authOptions: NextAuthOptions = {
 
         if (!admin) return null
 
-        const isValid = await bcrypt.compare(credentials.password, admin.password)
+        const isValid = bcrypt.compare(credentials.password, admin.password!)
         if (!isValid) return null
 
         return {
