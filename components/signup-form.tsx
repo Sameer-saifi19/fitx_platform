@@ -20,6 +20,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { signupAction } from "@/actions/signup"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { signIn } from "next-auth/react"
 
 
 export function SignupForm({
@@ -60,10 +61,10 @@ export function SignupForm({
                         Welcome! Please fill in your details to get started
                     </CardDescription>
                     <div className="grid mt-4 grid-cols-2 gap-4">
-                        <Button variant="outline" className="w-full gap-4 flex">
+                        <Button variant="outline" onClick={() => signIn('google')} className="w-full gap-4 flex">
                             <FaGoogle /> Google
                         </Button>
-                        <Button variant="outline" className="w-full gap-4 flex">
+                        <Button variant="outline" onClick={() => signIn('apple')} className="w-full gap-4 flex">
                             <FaApple /> Apple
                         </Button>
                     </div>

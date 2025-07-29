@@ -1,9 +1,9 @@
-import React from 'react'
+import getSessionData from "@/utils/sessiondata";
 
-const dashboard = () => {
-  return (
-    <div>dashboard</div>
+export default function Dashboard(){
+  return(
+    <>
+      
+    </>
   )
 }
-
-export default dashboard

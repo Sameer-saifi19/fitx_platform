@@ -1,4 +1,4 @@
-import { CalendarSync, ChartArea, ChevronUp, CircleDollarSign, Dumbbell, Home, LogOut, Settings, User2, UserCircle, UserRound, UserRoundCheck } from "lucide-react"
+import { AwardIcon, CalendarSync, ChartArea, ChevronUp, CircleDollarSign, Dumbbell, Home, LogOut, Settings, User2, UserCircle, UserRound, UserRoundCheck } from "lucide-react"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarSeparator } from "./ui/sidebar"
 import Link from "next/link"
 import Image from "next/image"
@@ -8,6 +8,8 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import getSessionData from "@/utils/sessiondata";
+import { redirect } from "next/navigation";
 
 
 
@@ -49,7 +51,12 @@ const items = [
     }
 ]
 
-export default function AdminSidebar() {
+export default async function AdminSidebar() {
+    const session = await getSessionData()
+
+    if(!session){
+        redirect('/auth/signin')
+    }
     return (
         <Sidebar collapsible="icon" >
             <SidebarHeader className="py-4">
@@ -97,7 +104,7 @@ export default function AdminSidebar() {
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <SidebarMenuButton>
-                                    <User2 /> Sameer <ChevronUp className="ml-auto" />
+                                    <User2 /> {session.user.name} <ChevronUp className="ml-auto" />
                                 </SidebarMenuButton>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">

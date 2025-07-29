@@ -58,10 +58,10 @@ export function LoginForm({
             Welcome back ! Please sign in to Continue
           </CardDescription>
           <div className="grid mt-4 grid-cols-2 gap-4">
-            <Button variant="outline" className="w-full gap-4 flex">
+            <Button variant="outline" onClick= { () => signIn('google')} className="w-full gap-4 flex">
               <FaGoogle /> Google
             </Button>
-            <Button variant="outline" className="w-full gap-4 flex">
+            <Button variant="outline" onClick={ () => signIn('apple')} className="w-full gap-4 flex">
               <FaApple /> Apple
             </Button>
           </div>
