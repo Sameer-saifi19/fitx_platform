@@ -1,4 +1,5 @@
-import { AwardIcon, CalendarSync, ChartArea, ChevronUp, CircleDollarSign, Dumbbell, Home, LogOut, Settings, User2, UserCircle, UserRound, UserRoundCheck } from "lucide-react"
+
+import { CalendarSync, ChartArea, ChevronUp, CircleDollarSign, Dumbbell, Home, LogOut, Settings, User2, UserCircle, UserRound, UserRoundCheck } from "lucide-react"
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarSeparator } from "./ui/sidebar"
 import Link from "next/link"
 import Image from "next/image"
@@ -10,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import getSessionData from "@/utils/sessiondata";
 import { redirect } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 
 
