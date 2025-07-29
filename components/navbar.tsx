@@ -14,14 +14,15 @@ import {
 import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
 import { SidebarTrigger } from "./ui/sidebar";
+import Link from "next/link";
 
-export default function Navbar(){
+export default function Navbar() {
 
     const { theme, setTheme } = useTheme();
     return (
         <nav className="p-4 mb-8 flex items-center justify-between">
             <div className="flex items-center gap-6">
-                <SidebarTrigger className="size-10"/>
+                <SidebarTrigger className="size-10" />
                 <span className="text-2xl font-semibold" >Hi, Sameer</span>
             </div>
             <div className="flex items-center gap-4">
@@ -58,8 +59,11 @@ export default function Navbar(){
                     <DropdownMenuContent sideOffset={12}>
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <User /> Profile
+                        <DropdownMenuItem asChild>
+                            <Link href="/admin/dashboard/profile" className="flex items-center gap-2">
+                                <User />
+                                My Profile
+                            </Link>
                         </DropdownMenuItem>
                         <DropdownMenuItem>
                             <Settings /> Settings

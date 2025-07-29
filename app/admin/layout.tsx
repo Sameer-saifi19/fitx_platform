@@ -4,7 +4,7 @@ import Navbar from "@/components/navbar";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider>
+    <SidebarProvider suppressHydrationWarning>
       <AdminSidebar/>
       <main className="w-full">
         <Navbar/>

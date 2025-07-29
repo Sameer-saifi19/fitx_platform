@@ -14,7 +14,7 @@ import {
 const items = [
     {
         title: "Home",
-        url: "/admin/dasboard",
+        url: "/admin/dashboard",
         icon: Home
     },
     {
@@ -97,10 +97,9 @@ export default function AdminSidebar() {
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <SidebarMenuButton>
-                                    <User2 /> <ChevronUp className="ml-auto" />
+                                    <User2 /> Sameer <ChevronUp className="ml-auto" />
                                 </SidebarMenuButton>
                             </DropdownMenuTrigger>
-
                             <DropdownMenuContent align="end">
                                 <DropdownMenuItem><UserCircle /> Account</DropdownMenuItem>
                                 <DropdownMenuItem><Settings /> Settings </DropdownMenuItem>
