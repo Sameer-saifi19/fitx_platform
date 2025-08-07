@@ -1,5 +1,5 @@
 import { signup } from "@/actions/user"
-import { signIn } from "@/auth"
+import { auth, signIn } from "@/auth"
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -12,8 +12,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
+import { redirect } from "next/navigation"
 
-export default function SigninPage() {
+export default async function SigninPage() {
+    const session = await auth();
+    if(session){
+        redirect('/')
+    }
     return (
         <Card className="w-full max-w-sm text-center gap-3">
             <CardHeader>

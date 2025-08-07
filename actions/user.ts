@@ -3,6 +3,8 @@
 import { signIn } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import { redirect } from "next/navigation";
+
 
 const signup = async (formData: FormData) => {
     const fullname = formData.get('fullname') as string;
@@ -26,7 +28,9 @@ const signup = async (formData: FormData) => {
             password: hashedPassword
         }
     })
-
+    if(user){
+        redirect('/login')
+    }
     return { success: true, user}
 }
 
@@ -37,7 +41,7 @@ const signin = async (formData: FormData) =>{
 
     try {
         await signIn('credentials', {
-            redirect: false,
+            redirect: true,
             callbackUrl: '/',
             email,
             password
